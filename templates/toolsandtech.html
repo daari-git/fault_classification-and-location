@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools & Technologies - Fault Detection System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #3498db;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #2c3e50;
+      --simulation-color: #9b59b6;
+      --python-color: #3776ab;
+      --viz-color: #27ae60;
+      --knn-color: #f39c12;
+      --dt-color: #16a085;
+      --rf-color: #c0392b;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: var(--dark-color);
+      line-height: 1.6;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      font-weight: 700;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-top: 50px;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-color);
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+    
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .tech-card {
+      background: white;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .tech-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    
+    .simulation { color: var(--simulation-color); }
+    .python { color: var(--python-color); }
+    .viz { color: var(--viz-color); }
+    .knn { color: var(--knn-color); }
+    .dt { color: var(--dt-color); }
+    .rf { color: var(--rf-color); }
+    
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+    }
+    
+    .simulation-card::before { background: var(--simulation-color); }
+    .python-card::before { background: var(--python-color); }
+    .viz-card::before { background: var(--viz-color); }
+    .knn-card::before { background: var(--knn-color); }
+    .dt-card::before { background: var(--dt-color); }
+    .rf-card::before { background: var(--rf-color); }
+    
+    p {
+      color: #555;
+      margin-bottom: 0;
+    }
+    
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 30px;
+      background: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .back-btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem;
+      }
+      
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Tools & Technologies</h1>
+    </div>
+  </header>
+  
+  <div class="container">
+    <h2>Development Tools</h2>
+    <div class="tech-grid">
+      <div class="tech-card simulation-card">
+        <div class="tech-icon simulation">
+          <i class="fas fa-project-diagram"></i>
+        </div>
+        <h3>Simulation Tools</h3>
+        <p>MATLAB Simulink for power system simulation and data generation, creating realistic fault scenarios for training.</p>
+      </div>
+      
+      <div class="tech-card python-card">
+        <div class="tech-icon python">
+          <i class="fab fa-python"></i>
+        </div>
+        <h3>Python Ecosystem</h3>
+        <p>Using Scikit-learn for ML implementation, Pandas for data manipulation, and NumPy for numerical computations.</p>
+      </div>
+      
+      <div class="tech-card viz-card">
+        <div class="tech-icon viz">
+          <i class="fas fa-chart-bar"></i>
+        </div>
+        <h3>Visualization</h3>
+        <p>Matplotlib and Seaborn for data analysis and presentation, creating insightful visualizations of fault patterns.</p>
+      </div>
+    </div>
+    
+    <h2>Machine Learning Algorithms</h2>
+    <div class="tech-grid">
+      <div class="tech-card knn-card">
+        <div class="tech-icon knn">
+          <i class="fas fa-sitemap"></i>
+        </div>
+        <h3>K-Nearest Neighbors</h3>
+        <p>Used for initial fault detection based on similarity to known fault patterns, providing quick identification.</p>
+      </div>
+      
+      <div class="tech-card dt-card">
+        <div class="tech-icon dt">
+          <i class="fas fa-tree"></i>
+        </div>
+        <h3>Decision Trees</h3>
+        <p>Provides interpretable decision-making process for fault classification with clear decision paths.</p>
+      </div>
+      
+      <div class="tech-card rf-card">
+        <div class="tech-icon rf">
+          <i class="fas fa-tree"></i>
+        </div>
+        <h3>Random Forest</h3>
+        <p>Ensemble method combining multiple decision trees for robust classification with improved accuracy.</p>
+      </div>
+    </div>
+    
+    <div style="text-align: center;">
+      <a href="/homepage" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Main Page
+      </a>
+    </div>
+  </div>
+</body>
+</html>

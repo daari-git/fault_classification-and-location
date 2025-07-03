@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Team</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      overscroll-behavior: none;
+    }
+
+    .team-profile {
+      height: 100dvh; /* ✅ dynamic full viewport on mobile */
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      transition: all 0.5s ease;
+      overflow: hidden;
+      touch-action: pan-y;
+    }
+
+    .team-profile img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .team-profile h2 {
+      font-size: 30px;
+      color: #222;
+    }
+
+    .team-profile p {
+      font-size: 18px;
+      color: #555;
+      margin: 15px 0 30px;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .social-links a {
+      color: #333;
+      font-size: 24px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #0077ff;
+      transform: scale(1.2);
+    }
+
+    .nav-dots {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #0077ff;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 30px;
+      color: #333;
+      background-color: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      transition: 0.3s ease;
+    }
+
+    .arrow:hover {
+      background-color: #0077ff;
+      color: white;
+    }
+
+    .arrow.left {
+      left: 20px;
+    }
+
+    .arrow.right {
+      right: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .team-profile img {
+        width: 160px;
+        height: 160px;
+      }
+
+      .team-profile h2 {
+        font-size: 24px;
+      }
+
+      .team-profile p {
+        font-size: 16px;
+      }
+
+      .arrow {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="team-profile" id="profile-container" ontouchstart="handleTouchStart(event)" ontouchmove="handleTouchMove(event)" ontouchend="handleTouchEnd(event)">
+    <div class="arrow left" onclick="prevProfile()"><i class="fas fa-chevron-left"></i></div>
+    <div class="arrow right" onclick="nextProfile()"><i class="fas fa-chevron-right"></i></div>
+    <div class="nav-dots" id="dots"></div>
+  </div>
+
+  <script>
+    const teamMembers = [
+      {
+        photo: "/static/images/subash.jpg",
+        name: "Subash Khanal - ML Engineer 🤖",
+        description: "Subash creates and trains the machine learning models that detect and classify power system faults. Using the datasets generated from the MATLAB simulations, he applies and fine-tunes various ML algorithms to improve prediction accuracy and system reliability.",
+        socials: {
+          facebook: "https://www.facebook.com/kamalsubash.khanal",
+          instagram: "https://www.instagram.com/subash_khanal/",
+          github: "https://github.com/daari-git",
+          linkedin: "https://www.linkedin.com/in/subash-khanal-929711277/"
+        }
+      },
+      {
+        photo: "/static/images/subarna.jpg",
+        name: "Subarna Khadka - Electrical Systems Engineer 👨‍🔧",
+        description: "Subarna is responsible for developing the core MATLAB simulation model for power systems. He focuses on designing and simulating different fault scenarios, ensuring accurate electrical behavior, and generating quality datasets for machine learning.",
+        socials: {
+          facebook: "https://www.facebook.com/subarna.khadka.351",
+          instagram: "https://www.instagram.com/its_me_subarna/",
+          github: "",
+          linkedin: "https://www.linkedin.com/in/subarna-khadka-b58804312/"
+        }
+      },
+       {
+          photo: "/static/images/sudesh.jpg",
+          name: "Sudesh Parajuli - Project Coordinator 📋",
+          description: "Sudesh manages the entire project workflow including documentation, reporting, proposal writing, and presentation design. He ensures that the project is well-documented and professionally presented for academic, client, or competition purposes.",
+          socials: {
+            facebook: "https://www.facebook.com/sudes.parajuli",
+            instagram: "https://www.instagram.com/sud_es_51/",
+            github: "#",
+            linkedin: "#"
+         }
+      },
+        {
+          photo: "/static/images/sagar.jpg",
+          name: "Sagar Shrestha - Technical Assistant 🧩",
+          description: "Sagar provides ongoing support across all project areas — from MATLAB to ML to documentation. He assists each member wherever needed, helping maintain smooth coordination and timely progress.",
+          socials: {
+            facebook: "https://www.facebook.com/profile.php?id=100016501716442",
+            instagram: "https://www.instagram.com/hawa1575_offical/",
+            github: "#",
+            linkedin: "#"
+          }
+        },
+    ];
+
+    let currentIndex = 0;
+
+    function displayProfile(index) {
+      const member = teamMembers[index];
+      const container = document.getElementById("profile-container");
+
+      container.innerHTML = `
+        <div class="arrow left" onclick="prevProfile()"><i class="fas fa-chevron-left"></i></div>
+        <div class="arrow right" onclick="nextProfile()"><i class="fas fa-chevron-right"></i></div>
+        <img src="${member.photo}" alt="${member.name}">
+        <h2>${member.name}</h2>
+        <p>${member.description}</p>
+        <div class="social-links">
+          ${Object.entries(member.socials).map(([platform, link]) =>
+            link && link !== "#"
+              ? `<a href="${link}" target="_blank"><i class="fab fa-${platform}"></i></a>`
+              : "").join("")}
+        </div>
+        <div class="nav-dots" id="dots"></div>
+      `;
+      updateDots();
+    }
+
+    function updateDots() {
+      const dotsContainer = document.getElementById("dots");
+      dotsContainer.innerHTML = "";
+      teamMembers.forEach((_, idx) => {
+        const dot = document.createElement("span");
+        dot.className = "dot" + (idx === currentIndex ? " active" : "");
+        dot.addEventListener("click", () => {
+          currentIndex = idx;
+          displayProfile(currentIndex);
+        });
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function nextProfile() {
+      currentIndex = (currentIndex + 1) % teamMembers.length;
+      displayProfile(currentIndex);
+    }
+
+    function prevProfile() {
+      currentIndex = (currentIndex - 1 + teamMembers.length) % teamMembers.length;
+      displayProfile(currentIndex);
+    }
+
+    // Swipe gesture support
+    let startX = 0;
+
+    function handleTouchStart(e) {
+      startX = e.touches[0].clientX;
+    }
+
+    function handleTouchMove(e) {
+      // prevent vertical scroll interference
+      if (Math.abs(e.touches[0].clientX - startX) > 20) {
+        e.preventDefault();
+      }
+    }
+
+    function handleTouchEnd(e) {
+      const endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        nextProfile();
+      } else if (endX - startX > 50) {
+        prevProfile();
+      }
+    }
+
+    window.onload = () => displayProfile(currentIndex);
+  </script>
+</body>
+</html>

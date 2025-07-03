@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff, #d6e4f0);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header h1 {
+            color: #3f51b5;
+            margin-bottom: 5px;
+        }
+        .header p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .result {
+            font-size: 1.3rem;
+            color: #333;
+            margin: 20px 0;
+        }
+        .result strong {
+            color: #3f51b5;
+        }
+        .error {
+            font-size: 1.2rem;
+            color: red;
+            font-weight: bold;
+        }
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: white;
+            background: #3f51b5;
+            padding: 10px 25px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        a:hover {
+            background: #2c3e94;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Power System Monitoring</h1>
+            <p>Real-time voltage and current analysis</p>
+        </div>
+
+        {% if prediction %}
+        <div class="result">
+            <p><strong>Model Used:</strong> {{ model }}</p>
+            <p><strong>Predicted Fault Type:</strong> {{ prediction }}</p>
+        </div>
+        {% elif error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <a href="/input">Go Back</a>
+    </div>
+</body>
+</html>

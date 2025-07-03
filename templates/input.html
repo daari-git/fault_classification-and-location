@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Power System Predictor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2f49d1;
+            --primary-dark: #2338a1;
+            --secondary: #4cc9f0;
+            --accent: #f72585;
+            --light: #ffffff;
+            --dark: #212529;
+            --muted: #6c757d;
+            --input-bg: #f5f5f5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: var(--dark);
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-card {
+            background: var(--light);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .section-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .section-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .input-col {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: var(--input-bg);
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 768px) {
+            .input-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Fault Type Prediction -->
+<div class="section-card">
+    <div class="section-header">
+        <h2>⚡ Fault Type Predictor</h2>
+    </div>
+    <div class="section-body">
+        <form action="/predict" method="post">
+            <div class="input-row">
+                <div class="input-col">
+                    <label for="V1">Phase A Voltage (V)</label>
+                    <input type="text" name="V1" placeholder="Enter voltage">
+                </div>
+                <div class="input-col">
+                    <label for="V2">Phase B Voltage (V)</label>
+                    <input type="text" name="V2" placeholder="Enter voltage">
+                </div>
+                <div class="input-col">
+                    <label for="V3">Phase C Voltage (V)</label>
+                    <input type="text" name="V3" placeholder="Enter voltage">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-col">
+                    <label for="I1">Phase A Current (A)</label>
+                    <input type="text" name="I1" placeholder="Enter current">
+                </div>
+                <div class="input-col">
+                    <label for="I2">Phase B Current (A)</label>
+                    <input type="text" name="I2" placeholder="Enter current">
+                </div>
+                <div class="input-col">
+                    <label for="I3">Phase C Current (A)</label>
+                    <input type="text" name="I3" placeholder="Enter current">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-col">
+                    <label for="V0">Zero Sequence Voltage (V0)</label>
+                    <input type="text" name="V0" placeholder="Enter V0">
+                </div>
+                <div class="input-col">
+                    <label for="I0">Zero Sequence Current (I0)</label>
+                    <input type="text" name="I0" placeholder="Enter I0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="model">Select Model:</label>
+                <select name="model">
+                    <option value="Random Forest">Random Forest</option>
+                    <option value="Decision Tree">Decision Tree</option>
+                </select>
+            </div>
+            <button type="submit">Predict Fault Type</button>
+        </form>
+    </div>
+</div>
+
+    <!-- Distance Prediction -->
+    <div class="section-card">
+        <div class="section-header">
+            <h2>📏 Distance to Fault Predictor</h2>
+        </div>
+        <div class="section-body">
+            <form action="/predict_distance" method="post">
+                <div class="input-row">
+                    <div class="input-col">
+                        <label>Sending End Voltage (VS1)</label>
+                        <input type="text" name="VS1" placeholder="Voltage (V)">
+                    </div>
+                    <div class="input-col">
+                        <label>VS1 Angle (°)</label>
+                        <input type="text" name="VS1_angle" placeholder="Angle (°)">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-col">
+                        <label>Sending End Current (IS1)</label>
+                        <input type="text" name="IS1" placeholder="Current (A)">
+                    </div>
+                    <div class="input-col">
+                        <label>IS1 Angle (°)</label>
+                        <input type="text" name="IS1_angle" placeholder="Angle (°)">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-col">
+                        <label>Receiving End Voltage (VR1)</label>
+                        <input type="text" name="VR1" placeholder="Voltage (V)">
+                    </div>
+                    <div class="input-col">
+                        <label>VR1 Angle (°)</label>
+                        <input type="text" name="VR1_angle" placeholder="Angle (°)">
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-col">
+                        <label>Receiving End Current (IR1)</label>
+                        <input type="text" name="IR1" placeholder="Current (A)">
+                    </div>
+                    <div class="input-col">
+                        <label>IR1 Angle (°)</label>
+                        <input type="text" name="IR1_angle" placeholder="Angle (°)">
+                    </div>
+                </div>
+
+                <button type="submit">Predict Distance</button>
+                <div class="form-footer">Ensure all input values are accurate and consistent in units.</div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

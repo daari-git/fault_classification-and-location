@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Prediction Result</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #4cc9f0;
+            --accent: #f72585;
+            --success: #38b000;
+            --error: #e63946;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .result-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            text-align: center;
+            padding: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .result-header {
+            margin-bottom: 30px;
+        }
+        
+        .result-header h1 {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .result-header p {
+            color: #6c757d;
+            font-size: 16px;
+        }
+        
+        .result-content {
+            margin: 30px 0;
+        }
+        
+        .prediction-success {
+            background: rgba(56, 176, 0, 0.1);
+            border-left: 5px solid var(--success);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .prediction-success h3 {
+            color: var(--success);
+            font-size: 24px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .prediction-success h3 i {
+            margin-right: 10px;
+        }
+        
+        .prediction-value {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin: 20px 0;
+        }
+        
+        .unit-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .error-message {
+            background: rgba(230, 57, 70, 0.1);
+            border-left: 5px solid var(--error);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .error-message h3 {
+            color: var(--error);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-message h3 i {
+            margin-right: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 600px) {
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-card">
+        <div class="result-header">
+            <h1>Transmission Line Analysis Result</h1>
+            <p>Predicted distance based on your input parameters</p>
+        </div>
+        
+        <div class="result-content">
+            {% if prediction %}
+            <div class="prediction-success">
+                <h3><i class="fas fa-check-circle"></i> Successful Prediction</h3>
+                <p>The calculated distance for your transmission line is:</p>
+                <div class="prediction-value">
+                    {{ prediction }} <span class="unit-badge">km</span>
+                </div>
+                <p>This result is based on the parameters you provided.</p>
+            </div>
+            {% elif error %}
+            <div class="error-message">
+                <h3><i class="fas fa-exclamation-triangle"></i> Calculation Error</h3>
+                <p>{{ error }}</p>
+                <p>Please check your input values and try again.</p>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/input" class="btn btn-primary">
+                <i class="fas fa-calculator"></i> New Calculation
+            </a>
+        </div>
+    </div>
+</body>
+</html>
